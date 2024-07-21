@@ -6,6 +6,7 @@ import {
     signInWithEmailAndPassword,
 } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
+// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -27,6 +28,7 @@ const auth = getAuth();
 //frontend code
 const loginForm = document.getElementById("#login-form");
 loginForm.addEventListener("submit", (e) => {
+    console.log("form submit called");
     e.preventDefault();
     const email = document.getElementById("email-field").value;
     const password = document.getElementById("password-field").value;
@@ -35,6 +37,7 @@ loginForm.addEventListener("submit", (e) => {
     else handleSignUp(email, password);
 });
 const handleSignIn = (email, password) => {
+    console.log("sign in called");
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
             const user = userCredentials.user;
@@ -46,6 +49,7 @@ const handleSignIn = (email, password) => {
 };
 
 const handleSignUp = (email, password) => {
+    console.log("sign up called");
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
             const user = userCredentials.user;
